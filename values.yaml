@@ -1,0 +1,42 @@
+replicas: 1
+image:
+  name: gate
+  tag: 0.1.0
+  pullPolicy: IfNotPresent
+service:
+  type: ClusterIP
+  port: 3000
+  annotations : {}
+rbac:
+  create: false
+  serviceAccountName: default
+config:
+  gateServerUrl: "http://localhost:3000"
+  signInType: ""
+  gateOauthClientID: "totally_secret_client_id"
+  gateOauthClientSecret: "totally_secret"
+  gateHostedDomain: "gate.domain"
+  gateHostedDomains: "test1.com,test2.com"
+  gateDBHost: "localhost"
+  gateDBPort: "3306"
+  gateDBName: ""
+  gateDBUser: "gate"
+  gateDBPassword: "gate"
+  cacheHost: "localhost"
+  cachePort: "6379"
+  secretKeyBase: ""
+  secretApiKey: ""
+  gateConfigSecret: ""
+  userRoles: "employee,consultant"
+  uidBuffer: "5000"
+  defaultHostPattern: "s*"
+  productList: "pr1,pr2"
+  samlApps: "datadog"
+  gateOrganizationName: ""
+  gateOrganizationStatic: ""
+  gateVpnSslCert: ""
+  gateVpnSslXsigned: ""
+  gateVpnSslPrivateKey: ""
+  newrelicAgentEnabled: "false"
+  newrelicLicenseKey: ""
+  newrelicAppName: "Gate"
