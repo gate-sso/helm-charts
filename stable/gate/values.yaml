@@ -1,6 +1,6 @@
 replicas: 1
 image:
-  name: gate
+  name: gatesso/gate
   tag: 0.1.0
   pullPolicy: IfNotPresent
 service:
