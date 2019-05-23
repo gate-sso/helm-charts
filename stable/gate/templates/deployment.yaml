@@ -27,6 +27,8 @@ spec:
         env:
         - name: RAILS_ENV
           value: {{ .Values.config.rails.environment }}
+        - name: RAILS_SERVE_STATIC_FILES
+          value: {{ .Values.config.rails.serveStaticFiles }}
         - name: GATE_SERVER_URL
           value: {{ .Values.config.gateServerUrl }}
         - name: SIGN_IN_TYPE
