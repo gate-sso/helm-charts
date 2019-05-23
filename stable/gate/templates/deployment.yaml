@@ -25,6 +25,8 @@ spec:
         - name: gate
           containerPort: 3000
         env:
+        - name: RAILS_ENV
+          value: {{ .Values.config.rails.environment }}
         - name: GATE_SERVER_URL
           value: {{ .Values.config.gateServerUrl }}
         - name: SIGN_IN_TYPE

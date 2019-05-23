@@ -11,6 +11,8 @@ rbac:
   create: false
   serviceAccountName: default
 config:
+  rails:
+    environment: "development"
   gateServerUrl: "http://localhost:3000"
   signInType: ""
   gateOauthClientID: "totally_secret_client_id"
