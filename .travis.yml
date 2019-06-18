@@ -1,0 +1,22 @@
+language: minimal
+
+services:
+ - docker
+
+env:
+  global:
+    - GITHUB_ACTOR=gatessobuilder
+    - secure: "pI95hygXfXOC+tVUlIbA1GY6gmERwF/gj2+daaOCIptKNQPNY9YP8aJVACCLql7EzrD4GZ6J2GkpyPwNLCYukpT6YiAfYhFTod51R/8LymnMbtbLigJ3lXGW7Yq/R69DA57jquR5hgDWC3D5XriilwgCuxk4M0JS/1tDg3qx63NFFvca75cdS6fpqCmQMuDL5Hla8B2Wizsdts6bnEoLrVf4vmgBXiu3wagqeu4cWgQy27NuL815+8WGuiGkbr/TPBZgQyBl2kvMtyOZDS75znrNCVjm3nGlvqFMOiCOaPLwKxApKlDRAH+35RrbcFMpenyzBktHZwlOjajBU2PQ488MV4k1yTF4C10NSRazueh9xrPuex6Sm+TaoSvmXWiksIrV0DzPBNbCiJzMDWeU/pTiFwMH/7YDcaRYs+t9HRhbTvk9BfAJUrzlzTxvYcmYfov7TufeCpMzC7XQLp4dpBYy5XYmmAT68Qn21nxGuVJH9LEI/tJG1Ww/l8L+0s3RwzYLbeokamNWn0w5aNEedU8eIPhu9cGMnbBacaD3hsOj6Sk1V3RVEt9R7NU4K1+Bl8BA307Yqca4FbkPu5JvPmxriAyO/1T5TYAM4CsI/nzXMJX+fFZ56+BHFLCHdXX44h0gjwApt/9V61t/svdglJto3DBYlBEbnPsq0EGTBD8="
+    - CHART_REPOSITORY=gate-sso/helm-charts
+    - CHART_DIRECTORY=stable/gate
+    - CHART_VERSION=$TRAVIS_TAG
+    - COMMIT_ID=$TRAVIS_COMMIT
+    - PACKAGE_REPOSITORY=gate-sso/helm-packages
+    - PACKAGE_URL=https://gate-sso.github.io/helm-packages
+
+deploy:
+  provider: script
+  script: bash deployment/deploy.sh
+  on:
+    branch: master
+    tags: true
