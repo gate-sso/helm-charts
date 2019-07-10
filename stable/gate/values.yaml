@@ -3,6 +3,8 @@ image:
   name: gatesso/gate
   tag: 0.1.0
   pullPolicy: IfNotPresent
+pod:
+  annotations: {}
 service:
   type: ClusterIP
   port: 3000
