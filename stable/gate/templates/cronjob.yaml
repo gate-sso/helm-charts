@@ -1,0 +1,26 @@
+{{- range $job := .Values.jobs }}
+---
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: {{ template "gate.fullname" $ }}-{{ $job.name }}
+  namespace: {{ $.Release.Namespace }}
+  labels:
+    app: {{ template "gate.fullname" $ }}
+    charts: {{ $.Chart.Name }}-{{ $.Chart.Version }}
+spec:
+  concurrencyPolicy: {{ $job.concurrencyPolicy }}
+  schedule: {{ $job.schedule | quote }}
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: gate
+            image: {{ $.Values.image.name }}:{{ $.Values.image.tag }}
+            imagePullPolicy: {{ $.Values.image.pullPolicy }}
+            command: {{ $job.command }}
+            env:
+            {{- include "gate.env" $ | nindent 12 }}
+          restartPolicy: {{ $job.restartPolicy }}
+{{- end }}
