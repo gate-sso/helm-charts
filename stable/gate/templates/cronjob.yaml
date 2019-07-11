@@ -20,6 +20,10 @@ spec:
             image: {{ $.Values.image.name }}:{{ $.Values.image.tag }}
             imagePullPolicy: {{ $.Values.image.pullPolicy }}
             command: {{ $job.command }}
+            {{- with $job.args }}
+            args:
+{{ toYaml . | indent 12 }}
+            {{- end -}}
             env:
             {{- include "gate.env" $ | nindent 12 }}
           restartPolicy: {{ $job.restartPolicy }}

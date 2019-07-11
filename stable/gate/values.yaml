@@ -16,12 +16,14 @@ jobs:
   - name: purge-inactive-user
     concurrencyPolicy: Forbid
     schedule: "0 2 * * *"
-    command: ["bundle", "exec", "rake", "users:purge_inactive"]
+    command: ["bundle"]
+    args: ["exec", "rake", "users:purge_inactive"]
     restartPolicy: OnFailure
   - name: revoke-expired-membership
     concurrencyPolicy: Forbid
     schedule: "0 2 * * *"
-    command: ["bundle", "exec", "rake", "users:revoke_expired_membership"]
+    command: ["bundle"]
+    args: ["exec", "rake", "users:revoke_expired_membership"]
     restartPolicy: OnFailure
 config:
   rails:
