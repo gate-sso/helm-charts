@@ -34,18 +34,19 @@ This command removes all the Kubernetes components associated with the chart and
 
 The following table lists the configurable parameters of the Gate chart and their default values.
 
-Parameter                 | Description                                             | Default
-------------------------- | ------------------------------------------------------- | -------------
-`replicas`                | Node replicas (deployment)                              | `1`
-`image.name`              | `gate` image repository                                 | `gate`
-`image.tag`               | `gate` image tag                                        | `0.1.0`
-`image.pullPolicy`        | Image pull policy                                       | `IfNotPresent`
-`service.type`            | Service type                                            | `ClusterIP`
-`service.annotations`     | Kubernetes annotations for service                      | `{}`
-`service.loadBalancerIP`  | LoadBalancer service IP                                 | `nil`
-`service.nodePort`        | Set NodePort for service when using NodePort type       | `nil`
-`rbac.create`             | Set this to `true` to create RBAC resources             | `false`
-`rbac.serviceAccountName` | Name of serviceAccount when `rbac.create` is `false`    | `default`
+Parameter                           | Description                                             | Default
+----------------------------------- | ------------------------------------------------------- | -------------
+`replicas`                          | Node replicas (deployment)                              | `1`
+`image.name`                        | `gate` image repository                                 | `gate`
+`image.tag`                         | `gate` image tag                                        | `0.1.0`
+`image.pullPolicy`                  | Image pull policy                                       | `IfNotPresent`
+`service.type`                      | Service type                                            | `ClusterIP`
+`service.annotations`               | Kubernetes annotations for service                      | `{}`
+`service.loadBalancerIP`            | LoadBalancer service IP                                 | `nil`
+`service.loadBalancerSourceRanges`  | Range of subnet that allowed to access service          | `nil`
+`service.nodePort`                  | Set NodePort for service when using NodePort type       | `nil`
+`rbac.create`                       | Set this to `true` to create RBAC resources             | `false`
+`rbac.serviceAccountName`           | Name of serviceAccount when `rbac.create` is `false`    | `default`
 
 Parameters in `config.*` map to `.env` variables defined in the [Gate github](https://github.com/gate-sso/gate)
 
