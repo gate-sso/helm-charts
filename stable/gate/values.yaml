@@ -12,6 +12,15 @@ service:
 rbac:
   create: false
   serviceAccountName: default
+migration:
+  enabled: false
+  command: ["bundle"]
+  args: ["exec", "rake", "db:migrate"]
+  restartPolicy: Never
+  annotations:
+    "helm.sh/hook": pre-install,pre-upgrade
+    "helm.sh/hook-weight": "-5"
+    "helm.sh/hook-delete-policy": before-hook-creation
 jobs:
   - name: purge-inactive-user
     concurrencyPolicy: Forbid
@@ -25,6 +34,11 @@ jobs:
     command: ["bundle"]
     args: ["exec", "rake", "users:revoke_expired_membership"]
     restartPolicy: OnFailure
+secret:
+  annotations:
+    "helm.sh/hook": pre-install,pre-upgrade
+    "helm.sh/hook-weight": "-10"
+    "helm.sh/hook-delete-policy": before-hook-creation
 config:
   rails:
     environment: "development"
