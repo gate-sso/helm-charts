@@ -28,12 +28,14 @@ jobs:
     command: ["bundle"]
     args: ["exec", "rake", "users:purge_inactive"]
     restartPolicy: OnFailure
+    activeDeadlineSeconds: 300
   - name: revoke-expired-membership
     concurrencyPolicy: Forbid
     schedule: "0 2 * * *"
     command: ["bundle"]
     args: ["exec", "rake", "users:revoke_expired_membership"]
     restartPolicy: OnFailure
+    activeDeadlineSeconds: 300
 secret:
   annotations:
     "helm.sh/hook": pre-install,pre-upgrade

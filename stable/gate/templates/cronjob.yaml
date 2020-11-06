@@ -12,6 +12,7 @@ spec:
   concurrencyPolicy: {{ $job.concurrencyPolicy }}
   schedule: {{ $job.schedule | quote }}
   jobTemplate:
+    activeDeadlineSeconds: {{ $job.activeDeadlineSeconds }}
     spec:
       template:
         spec:
