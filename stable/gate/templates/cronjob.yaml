@@ -12,8 +12,8 @@ spec:
   concurrencyPolicy: {{ $job.concurrencyPolicy }}
   schedule: {{ $job.schedule | quote }}
   jobTemplate:
-    activeDeadlineSeconds: {{ $job.activeDeadlineSeconds }}
     spec:
+      activeDeadlineSeconds: {{ $job.activeDeadlineSeconds }}
       template:
         spec:
           containers:
