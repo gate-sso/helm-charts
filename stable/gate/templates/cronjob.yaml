@@ -1,6 +1,6 @@
 {{- range $job := .Values.jobs }}
 ---
-apiVersion: batch/v1beta1
+apiVersion: batch/v1
 kind: CronJob
 metadata:
   name: {{ template "gate.fullname" $ }}-{{ $job.name }}
@@ -24,7 +24,7 @@ spec:
             {{- with $job.args }}
             args:
 {{ toYaml . | indent 12 }}
-            {{- end -}}
+            {{- end }}
             env:
             {{- include "gate.env" $ | nindent 12 }}
           restartPolicy: {{ $job.restartPolicy }}
