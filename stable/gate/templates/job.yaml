@@ -26,7 +26,7 @@ spec:
         {{- with $.Values.migration.args }}
         args:
 {{ toYaml . | indent 8 }}
-        {{- end -}}
+        {{- end }}
         image: {{ $.Values.image.name }}:{{ $.Values.image.tag }}
         imagePullPolicy: {{ $.Values.image.pullPolicy }}
         env:
