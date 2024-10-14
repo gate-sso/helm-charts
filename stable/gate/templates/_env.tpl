@@ -109,4 +109,8 @@
       key: newrelicLicenseKey
 - name: NEWRELIC_APP_NAME
   value: {{ .Values.config.newrelicAppName }}
+{{- range $k, $v := .Values.configmap }}
+- name: {{ $k }}
+  value: {{ $v | quote }}
+{{- end }}
 {{- end }}
